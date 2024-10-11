@@ -1,0 +1,120 @@
+.seat {
+	width: 25px;
+	height: 25px;
+	margin: 2px;
+	text-align: center;
+	line-height: 25px;
+	cursor: pointer;
+	border: 1px solid #28a745;
+	/* Green border for normal seats */
+	box-sizing: border-box;
+	font-size: 10px;
+}
+
+.vip {
+	border: 1px solid #dc3545;
+	/* Red border for VIP seats */
+}
+
+.unavailable {
+	border: #bbbbbb;
+	background-color: #bbbbbb;
+	/* Gray background for unavailable seats */
+	color: white;
+	cursor: default;
+}
+
+.none {
+	border: none;
+	background-color: white;
+	cursor: default;
+}
+
+.break {
+	border: none;
+	flex-basis: 100%;
+	height: 0;
+}
+
+.selected {
+	background-color: #b11500;
+	color: #fff;
+}
+
+.box-seat {
+	width: 25px;
+	height: 25px;
+	margin: 2px;
+	cursor: pointer;
+	border: 1px solid #28a745;
+	/* Green border for normal seats */
+	box-sizing: border-box;
+	font-size: 10px;
+	float: left;
+}
+
+.description-box {
+	margin-top: 20px;
+	margin-left: 25%;
+}
+
+.description-item {
+	float: left;
+	width: 25px;
+	height: 25px;
+	margin: 2px;
+	text-align: center;
+	line-height: 25px;
+	cursor: pointer;
+	border: 1px solid #28a745;
+	/* Green border for normal seats */
+	box-sizing: border-box;
+	font-size: 10px;
+}
+
+.description-box p {
+	float: left;
+	margin: 0 10px;
+}
+
+.bottom-content {
+	margin-top: 20px;
+	padding: 10px;
+	background-color: black;
+	color: #cccccc;
+	font-size: 13px;
+}
+
+.bottom-content ul {
+	list-style: none;
+}
+
+.bottom-content button {
+	height: 60%;
+	font-weight: bolder;
+}
+
+.page-title {
+	color: white;
+	background-color: black;
+	text-align: center;
+	padding: 5px;
+}
+
+.page-title h1 {
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+.top-content {
+	padding: 10px;
+	font-weight: bold;
+	border-bottom: 1px solid #cccc;
+	margin-bottom: 20px;
+	background-color: #fdfcf0;
+	font-size: 14px;
+}
+
+.top-content p {
+	margin: 0;
+}

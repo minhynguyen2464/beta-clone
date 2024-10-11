@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<title>Admin Panel</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+			integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../css/admin.css" />
+	</head>
+
+	<body>
+		<nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand mb-0 h1">Admin Panel</span>
+		</nav>
+
+		<div class="container-fluid">
+			<div class="row">
+				<nav class="col-md-2 d-none d-md-block navbar-dark bg-dark sidebar">
+					<div class="sidebar-sticky">
+						<ul class="nav flex-column">
+							<li class="nav-item">
+								<a class="nav-link active" href="./"> Dashboard </a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./movie"> Movies </a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#"> Users </a>
+							</li>
+							<!-- Add more menu items as needed -->
+						</ul>
+					</div>
+				</nav>
+
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+					<!-- Main content goes here -->
+					<h1 style="text-align: center" class="mt-4 mb-4">DASHBOARD</h1>
+					<hr />
+					<div class="row">
+						<div class="col-xl-4">
+							<div class="user-counter">
+								<div class="row">
+									<div class="col-xl-6">
+										<i class="fa-solid fa-user fa-6x"></i>
+									</div>
+									<div class="col-xl-6">
+										<h3>Số người dùng đăng ký</h3>
+										<h5><%= userCount %></h5>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4">
+							<div class="money-counter">
+								<div class="row">
+									<div class="col-xl-6">
+										<i class="fa-solid fa-money-bill fa-6x"></i>
+									</div>
+									<div class="col-xl-6">
+										<h3>Doanh thu</h3>
+
+										<h5>
+											<%= totalPrice.toLocaleString('vi-VN',{ style: 'currency',
+											currency: 'VND' }) %>
+										</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4">
+							<div class="ticket-counter">
+								<div class="row">
+									<div class="col-xl-6">
+										<i class="fa-solid fa-ticket fa-6x"></i>
+									</div>
+									<div class="col-xl-6">
+										<h3>Vé bán ra</h3>
+										<h5><%= ticketCount %></h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col-xl-8">
+							<table class="table">
+								<thead class="thead-dark">
+									<tr>
+										<th scope="col">ID</th>
+										<th scope="col">Tên phim</th>
+										<th scope="col">Tên người dùng</th>
+										<th scope="col">Ghế</th>
+										<th scope="col">Tình trạng</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% for( let index = 0; index < bookings.length; index++ ) { %>
+									<tr>
+										<th scope="row"><%= index+1 %></th>
+										<td><%= bookings[index].movie.title %></td>
+										<td><%= bookings[index].user.name %></td>
+										<td><%= bookings[index].seats %></td>
+										<td>
+											<% if (bookings[index].status === 1) { %>
+											<span class="badge badge-success">Đã thanh toán</span>
+											<% } else { %>
+											<span class="badge badge-danger">Chưa thanh toán</span>
+											<% } %>
+										</td>
+									</tr>
+									<% } %>
+								</tbody>
+							</table>
+						</div>
+						<div class="col-xl-4">
+							<table class="table">
+								<thead class="thead-dark">
+									<tr>
+										<th scope="col">Poster</th>
+										<th scope="col">Tên phim</th>
+										<th scope="col">Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% for( let index = 0; index < movies.length; index++ ) { %>
+									<tr>
+										<td>
+											<img
+												src="../images/<%=movies[index].poster %>"
+												alt=""
+												srcset=""
+												width="50%"
+											/>
+										</td>
+										<td><%=movies[index].title %></td>
+										<td>
+											<% if (movies[index].status === 1) { %>
+											<span class="badge badge-success">Đang chiếu</span>
+											<% } else if (movies[index].status === 2) { %>
+											<span class="badge badge-warning">Sắp chiếu</span>
+											<% } else { %>
+											<span class="badge badge-danger">Không chiếu</span>
+											<% } %>
+										</td>
+									</tr>
+									<% } %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js "></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js "></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js "></script>
+	</body>
+</html>

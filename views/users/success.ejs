@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VNPAY</title>
+    <link rel="stylesheet" href="/css/jumbotron-narrow.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header clearfix">
+        <ul class="nav nav-pills pull-right">
+          <li role="presentation" class="active">
+            <a href="/order/create_payment_url">Tạo mới GD thanh toán</a>
+          </li>
+          <li role="presentation" class="active">
+            <a href="/order/querydr">API truy vấn kết quả thanh toán</a>
+          </li>
+          <li role="presentation" class="active">
+            <a href="/order/refund">API hoàn tiền giao dịch</a>
+          </li>
+        </ul>
+        <h3 class="text-muted">VNPAY DEMO</h3>
+      </div>
+
+
+    <% if (code === "00") { %>
+        <p style="text-align: center;">GD thành công</p>
+    <% } else { %>
+        <p style="text-align: center; color: red;">GD thất bại</p>
+        <p style="text-align: center; color: red;">Mã lỗi <%= code %></p>
+    <% } %>
+    <p style="text-align: center;">
+        <a class="btn btn-default" href="/movie">Về danh sách</a>
+    </p>
+

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Movie Ticket Website</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+			integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../css/style.css" />
+	</head>
+
+	<body>
+		<div
+			style="width: 100%; background-color: black"
+			class="text-white login-list"
+		>
+			<% if (userName!=null) { %>
+			<ul class="container login-content">
+				<li>
+					<p style="margin-bottom: 0px">Xin chào! <%= userName %></p>
+				</li>
+				<li>
+					<i class="fa-solid fa-door-open"></i>
+					<a href="./logout" style="color: white; text-decoration: none"
+						>Đăng xuất</a
+					>
+				</li>
+			</ul>
+			<% } else { %>
+			<ul class="container login-content">
+				<li>
+					<i class="fa-solid fa-right-to-bracket"></i>
+					<a href="./login" style="color: white; text-decoration: none"
+						>Đăng nhập</a
+					>
+				</li>
+
+				<li>
+					<i class="fa-solid fa-pencil"></i>
+					<a href="./register" style="color: white; text-decoration: none"
+						>Đăng ký</a
+					>
+				</li>
+			</ul>
+			<% } %>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-16">
+					<nav class="navbar navbar-expand-lg navbar-light bg-white">
+						<a class="navbar-brand" href="../">Beta Quang Trung</a>
+						<button
+							class="navbar-toggler"
+							type="button"
+							data-toggle="collapse"
+							data-target="#navbarNav"
+							aria-controls="navbarNav"
+							aria-expanded="false"
+							aria-label="Toggle navigation"
+						>
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarNav">
+							<ul class="navbar-nav mx-auto">
+								<li class="nav-item">
+									<a class="nav-link text-dark" href="#">LỊCH CHIẾU THEO RẠP</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-dark" href="../movie">PHIM</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-dark" href="#">RẠP</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-dark" href="#">GIÁ VÉ</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-dark" href="#">TIN MỚI VÀ ƯU ĐÃI</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-dark" href="#">NHƯỢNG QUYỀN</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link text-dark" href="#">THÀNH VIÊN</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<!-- Your content goes here -->
+		<section style="background-color: #f8f8f8">
+			<hr />
+			<div class="container mt-4 section">
+				<div class="row">
+					<nav class="col-md-2 d-none d-md-block sidebar">
+						<a href="#home">Thông tin chung</a>
+						<a href="#about">Chi tiết tài khoản</a>
+						<a href="#services">Điểm thưởng</a>
+						<a href="#contact">Lịch sử giao dịch</a>
+					</nav>
+				</div>
+				<div id="transaction-history">
+					<h2>Lịch sử giao dịch</h2>
+
+					<!-- Example purchase history table with increased padding between rows -->
+					<table class="table table-striped" style="margin-top: 20px">
+						<thead>
+							<tr>
+								<th>Ngày</th>
+								<th>Tên Phim</th>
+								<th>Phòng chiếu</th>
+								<th>Suất Chiếu</th>
+								<th>Giá Tiền</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Example purchase history items (replace with dynamic data) -->
+
+							<% for (let i = 0; i < bookingHistory.length; i++) { %>
+							<tr>
+								<td>
+									<%= moment(bookingHistory[i].bookedAt).format('DD-MM-YYYY
+									HH:mm') %>
+								</td>
+								<td><%= movies[i].title %></td>
+								<td><%= movies[i].showtimes[0].cinemaRoom %></td>
+								<td>
+									<%= moment(movies[i].showtimes[0].time).format('DD/MM/YYYY
+									HH:mm') %>
+								</td>
+								<td>
+									<%= bookingHistory[i].price.toLocaleString('vi-VN', { style:
+									'currency', currency: 'VND' }) %>
+								</td>
+								<td>
+									<!-- Button trigger modal -->
+									<button
+										type="button"
+										class="btn btn-primary"
+										data-toggle="modal"
+										data-target="#modelId<%= i %>"
+									>
+										Xem
+									</button>
+
+									<!-- Modal -->
+									<div
+										class="modal fade"
+										id="modelId<%= i %>"
+										tabindex="-1"
+										role="dialog"
+										aria-labelledby="modelTitleId"
+										aria-hidden="true"
+									>
+										<div class="modal-dialog" role="document">
+											<div
+												class="modal-content"
+												style="
+													background-image: url(https://t4.ftcdn.net/jpg/05/26/87/65/360_F_526876565_fky3NCpXZO9Uo32Qs1rM0vHxoginVUFv.jpg);
+												"
+											>
+												<div class="modal-header justify-content-center">
+													<h5 class="modal-title">THE VAO PHONG CHIEU PHIM</h5>
+												</div>
+												<div class="modal-body">
+													<h4>Beta Quang Trung</h4>
+													<p>33A duong 30/4 thanh pho Vung Tau</p>
+													<p>
+														<%=
+														moment(bookingHistory[i].bookedAt).format('DD/MMM/YYYY
+														HH:mm') %>
+													</p>
+													<p>
+														===================================================
+													</p>
+													<h3>2DSUB <%= movies[i].title %></h3>
+													<div class="row">
+														<div class="col-xl-6">
+															<%=
+															moment(movies[i].showtimes[0].time).format('DD/MMM/YYYY')
+															%>
+														</div>
+														<div class="col-xl-6">
+															<%=
+															moment(movies[i].showtimes[0].time).format('HH:mm')
+															%>
+														</div>
+														<div class="col-xl-6">
+															<h3><%= movies[i].showtimes[0].cinemaRoom %></h3>
+														</div>
+														<div class="col-xl-6">
+															<h3><%= bookingHistory[i].seats %></h3>
+														</div>
+													</div>
+													<p>
+														===================================================
+													</p>
+													<div class="row">
+														<div class="col-xl-6">
+															<h5><%= bookingHistory[i].seatsType %> ticket</h5>
+															<p>-Ticket price</p>
+															<p>-Status</p>
+														</div>
+														<div class="col-xl-6">
+															<h5>
+																VND: <% const number = bookingHistory[i].price;
+																const formattedNumber =
+																number.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+																'.'); %> <%= formattedNumber %>
+															</h5>
+															<p><%= formattedNumber %> (bao gom 5% VAT)</p>
+															<p>
+																<i class="fa-solid fa-check"></i> Da thanh toan
+															</p>
+														</div>
+													</div>
+
+													<p>
+														===================================================
+													</p>
+													<p style="margin-left: 25%">
+														Mã vé: <%= bookingHistory[i]._id %>
+													</p>
+												</div>
+												<div class="modal-footer">
+													<button
+														type="button"
+														class="btn btn-secondary"
+														data-dismiss="modal"
+													>
+														Close
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Footer -->
+
+				<footer class="text-black text-center py-3" style="clear: both">
+					<hr />
+					<div class="container">
+						<p>&copy; 2024 Your Website Name. All Rights Reserved.</p>
+					</div>
+				</footer>
+			</div>
+			<hr />
+		</section>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Showtime Form</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		/>
+		<style>
+			body {
+				padding: 20px;
+			}
+
+			.btn a {
+				color: white;
+				font-style: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<h2>Add New Showtimes</h2>
+			<form id="showtimeForm">
+				<div class="form-group">
+					<label for="movieTitle">Tên phim:</label>
+					<input
+						type="text"
+						class="form-control"
+						id="movieTitle"
+						required
+						value="<%= movie.title %>"
+						disabled
+					/>
+				</div>
+				<div class="form-group">
+					<label for="duration">Thời lượng:</label>
+					<input
+						type="text"
+						class="form-control"
+						id="duration"
+						required
+						value="<%= movie.duration %>"
+						disabled
+					/>
+				</div>
+				<div class="form-group">
+					<label for="director">Đạo diễn:</label>
+					<input
+						type="text"
+						class="form-control"
+						id="director"
+						value="<%= movie.director %>"
+						disabled
+					/>
+				</div>
+				<div class="form-group">
+					<label for="showtime">Showtime:</label>
+					<input
+						type="datetime-local"
+						class="form-control"
+						id="showtimeInput"
+					/>
+				</div>
+				<div class="form-group">
+					<label for="cinemaRoom">Cinema Room</label>
+					<select class="form-control" name="cinemaRoom" id="cinemaRoom">
+						<% for( let index = 0; index < cinema.length; index++ ) { %>
+						<option value="<%= cinema[index].name %>">
+							<%= cinema[index].name %>
+						</option>
+						<% } %>
+					</select>
+				</div>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Showtime</th>
+							<th>Cinema Room</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody id="showtimesTableBody"></tbody>
+				</table>
+
+				<button
+					type="button"
+					class="btn btn-primary"
+					onclick="addShowtimeRow()"
+				>
+					Add Showtime
+				</button>
+				<button type="button" id="buttonClick" class="btn btn-success">
+					Submit
+				</button>
+				<hr />
+				<h1>DANH SÁCH LỊCH CHIẾU</h1>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Showtime</th>
+							<th>End Time</th>
+							<th>Seats Available</th>
+							<th>Cinema Room</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody id="showtimesList">
+						<% for( let index = 0; index < showtimes.length; index++ ) { %>
+						<tr>
+							<td><%= index+1 %></td>
+							<td>
+								<%= moment(showtimes[index].time).format('DD-MM-YY HH:mm') %>
+							</td>
+							<td>
+								<%= moment(showtimes[index].time).add(movie.duration,
+								'minutes').format('HH:mm') %>
+							</td>
+							<td><%= showtimes[index].seatsAvailable - seats[index] %></td>
+							<td>
+								<button type="button" class="btn btn-success">
+									<%= showtimes[index].cinemaRoom %>
+								</button>
+							</td>
+							<td>
+								<button
+									class="btn btn-danger"
+									onclick="deleteShowTime('<%= showtimes[index]._id %>')"
+								>
+									Xóa
+								</button>
+							</td>
+						</tr>
+						<% } %>
+					</tbody>
+				</table>
+			</form>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="../js/admin/admin-showtime.js"></script>
+	</body>
+</html>

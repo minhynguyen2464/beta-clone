@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div style="width: 100%; background-color: black" class="text-white login-list">
+        <ul class="container login-content">
+            <li>
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <a href="./login" style="color:white; text-decoration: none">Đăng nhập</a>
+            </li>
+
+            <li>
+                <i class="fa-solid fa-pencil"></i>
+                <a href="./register" style="color:white; text-decoration: none">Đăng ký</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-16">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                    <a class="navbar-brand" href="./">Beta Quang Trung</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item ">
+                                <a class="nav-link text-dark" href="#">LỊCH CHIẾU THEO RẠP</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="../movie">PHIM</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">RẠP</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">GIÁ VÉ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">TIN MỚI VÀ ƯU ĐÃI</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#">NHƯỢNG QUYỀN</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="./account/edit">THÀNH VIÊN</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Your content goes here -->
+    <section style="background-color: #f8f8f8;">
+        <hr>
+        <form id="userForm">
+            <div class="container">
+                <div class="registration-container">
+                    <h2 class="text-center mb-4">Đăng ký</h2>
+
+                    <div class="row">
+                        <!-- Left side of the form -->
+                        <form id="userForm">
+                            <div class="col-md-6 form-section">
+                                <div class="form-group">
+                                    <label for="name">Tên:</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nguyen Van A">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Mật khẩu:</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Mật khẩu ít nhất 6 ký tự">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob">Ngày, tháng, năm sinh:</label>
+                                    <input type="date" class="form-control" id="dob">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phonenumber">Số điện thoại:</label>
+                                    <input type="tel" class="form-control" id="phonenumber" placeholder="Nhập số điện thoại">
+                                </div>
+                            </div>
+
+                            <!-- Right side of the form -->
+                            <div class="col-md-6 form-section">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" id="email" placeholder="example@gmail.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Nhập lại mật khẩu:</label>
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Nhập lại mật khẩu">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Giới tính:</label>
+                                    <select class="form-control" id="gender">
+                                        <option value="male">Nam</option>
+                                        <option value="female">Nữ</option>
+                                        <option value="other">Khác</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-dark btn-block" id="submit">Đăng
+                                ký</button>
+                        </form>
+                    </div>
+
+
+                    <p class="text-center pt-3">Bạn đã có tài khoản? <a href="./login">Đăng nhập</a></p>
+
+                </div>
+
+            </div>
+        </form>
+        <!-- Footer -->
+        <hr>
+        <footer class=" text-black text-center py-3 " style="clear: both">
+            <div class="container">
+                <p>&copy; 2024 Your Website Name. All Rights Reserved.</p>
+            </div>
+        </footer>
+        </div>
+        <hr>
+
+    </section>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../js/users/users-register.js"></script>
+</body>
+
+</html>

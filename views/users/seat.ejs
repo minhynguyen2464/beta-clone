@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		/>
+		<link rel="stylesheet" href="../css/users-seat.css" />
+		<title>Movie Seat Selection</title>
+	</head>
+
+	<body>
+		<div class="container mt-4">
+			<div class="row">
+				<div class="col-lg-12" style="border: 1px solid #cccc; padding: 0px">
+					<div class="page-title">
+						<h1>BOOKING ONLINE</h1>
+					</div>
+					<div class="top-content">
+						<p>
+							Beta Hùng Vương Plaza | 2D | Số ghế (<span id="seatNumber"
+								><%= movieShowtime.showtimes[0].seatsAvailable - seatsTaken
+								%></span
+							>/ <%= movieShowtime.showtimes[0].seatsAvailable %>)
+						</p>
+						<p>
+							<% // Format the initial time const formattedStartTime =
+							moment(movieShowtime.showtimes[0].time).format('HH:mm'); // Parse
+							the formatted time to a moment object const startTime =
+							moment(formattedStartTime, 'HH:mm'); // Add the duration to the
+							parsed moment object const endTime =
+							startTime.add(movieShowtime.duration, 'minutes'); %> <%=
+							formattedStartTime %> ~ <%= endTime.format('HH:mm') %>, <%=
+							moment(movieShowtime.showtimes[0].time).format('DD/MM/YYYY') %>
+						</p>
+					</div>
+					<div class="seat-image" style="margin-bottom: 60px">
+						<img
+							src="https://www.cgv.vn/skin/frontend/cgv/default/images/bg-cgv/bg-screen.png"
+							alt=""
+							width="100%"
+						/>
+					</div>
+					<div
+						id="seat-map"
+						class="d-flex flex-wrap justify-content-center"
+					></div>
+					<div class="description-box" style="">
+						<div class="row">
+							<div class="col-lg-6">
+								<div
+									class="description-item mr-2"
+									style="background-color: #b11500; border: 0px"
+								></div>
+								<p>Checked</p>
+								<div
+									class="description-item mr-2"
+									style="clear: both; background-color: #bbbbbb; border: 0px"
+								></div>
+								<p>Đã chọn</p>
+								<div
+									class="description-item"
+									style="
+										clear: both;
+										background-color: #bbbbbb;
+										color: #fff;
+										border: 0px;
+										font-size: 15px;
+									"
+								>
+									X
+								</div>
+								<p>Không thể chọn</p>
+							</div>
+							<div class="col-lg-6">
+								<div class="description-item mr-2" style="clear: both"></div>
+								<p>Thường</p>
+								<div
+									class="description-item mr-2"
+									style="clear: both; border: 1px solid #dc3545"
+								></div>
+								<p>VIP</p>
+								<!-- Add more description items as needed -->
+							</div>
+						</div>
+					</div>
+					<div class="bottom-content">
+						<div class="row">
+							<div class="col-md-2">
+								<button
+									class="btn btn-danger"
+									id=""
+									style="width: 100%"
+									onclick="history.back()"
+								>
+									PREVIOUS
+								</button>
+							</div>
+							<div class="col-md-1">
+								<img
+									src="../images/<%= movieShowtime.poster %>"
+									alt=""
+									width="100%"
+								/>
+							</div>
+							<div class="col-md-2">
+								<ul>
+									<li id="movie-name"><%= movieShowtime.title %></li>
+									<li>2D</li>
+									<li>T13</li>
+								</ul>
+							</div>
+							<div class="col-md-2">
+								<ul>
+									<li>Rạp chiếu: <strong>Beta Hùng Vương Plaza</strong></li>
+									<li id="showtime">
+										Suất chiếu:
+										<strong>
+											<%= moment(movieShowtime.showtimes[0].time).format('HH:mm,
+											DD/MM/YYYY') %></strong
+										>
+									</li>
+									<li id="cinema">
+										Phòng chiếu:
+										<strong>
+											<%= movieShowtime.showtimes[0].cinemaRoom %></strong
+										>
+									</li>
+									<li>
+										<strong id="seat-type"></strong
+										><strong id="seat-choose"></strong>
+									</li>
+								</ul>
+							</div>
+							<div class="col-md-3">
+								<ul>
+									<li>Tên phim:<strong id="price"> 0,00 ₫</strong></li>
+									<li>Combo:<strong> 0,00 ₫</strong></li>
+									<li>
+										Tổng thanh toán:<strong id="total-price"> 0,00 ₫</strong>
+									</li>
+								</ul>
+							</div>
+							<div class="col-md-2">
+								<button
+									type="submit"
+									class="btn btn-primary"
+									id="checkoutBtn"
+									style="width: 100%"
+								>
+									NEXT
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="../js/users/users-seat.js"></script>
+	</body>
+</html>
